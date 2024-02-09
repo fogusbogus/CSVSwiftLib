@@ -8,12 +8,12 @@ import Foundation
 
 public class CSVTranslation {
 	public struct Options {
-		var trim = true
-		var alignColumnCount = false
-		var rowSplitChars = ["\n"]
-		var columnSplitChars = [","]
-		var columnEscapes = ["\""]
-		var allowLeadingWhitespacesBeforeEscapes = true
+		public var trim = true
+		public var alignColumnCount = false
+		public var rowSplitChars = ["\n"]
+		public var columnSplitChars = [","]
+		public var columnEscapes = ["\""]
+		public var allowLeadingWhitespacesBeforeEscapes = true
 	}
 	
 	private static func countColumnEscapes(data: String, escape: String, options: Options) -> Int {
