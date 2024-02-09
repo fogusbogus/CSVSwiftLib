@@ -8,6 +8,15 @@ import Foundation
 
 public class CSVTranslation {
 	public struct Options {
+		public init(trim: Bool = true, alignColumnCount: Bool = false, rowSplitChars: [String] = ["\n"], columnSplitChars: [String] = [","], columnEscapes: [String] = ["\""], allowLeadingWhitespacesBeforeEscapes: Bool = true) {
+			self.trim = trim
+			self.alignColumnCount = alignColumnCount
+			self.rowSplitChars = rowSplitChars
+			self.columnSplitChars = columnSplitChars
+			self.columnEscapes = columnEscapes
+			self.allowLeadingWhitespacesBeforeEscapes = allowLeadingWhitespacesBeforeEscapes
+		}
+		
 		public var trim = true
 		public var alignColumnCount = false
 		public var rowSplitChars = ["\n"]
