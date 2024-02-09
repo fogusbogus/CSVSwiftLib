@@ -183,7 +183,7 @@ public class CSVTranslation {
 	}
 }
 
-extension StringProtocol {
+public extension StringProtocol {
 	func ranges(of targetString: Self, options: String.CompareOptions = [], locale: Locale? = nil) -> [Range<String.Index>] {
 		
 		let result: [Range<String.Index>] = self.indices.compactMap { startIndex in
