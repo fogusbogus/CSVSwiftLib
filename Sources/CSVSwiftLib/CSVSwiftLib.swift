@@ -6,6 +6,7 @@
 
 import Foundation
 
+
 public class CSVTranslation {
 	public struct Options {
 		public init() {}
@@ -24,6 +25,27 @@ public class CSVTranslation {
 		public var columnSplitChars = [","]
 		public var columnEscapes = ["\""]
 		public var allowLeadingWhitespacesBeforeEscapes = true
+		
+		private static func findHeader(_ colValues: [String], _ candidates: [String]) -> Int? {
+			let colValues = colValues.map {$0.lowercased()}
+			return candidates.compactMap({colValues.firstIndex(of: $0.lowercased())}).sorted().first
+		}
+		@available(macOS 13.0, *)
+		@available(iOS 16.0, *)
+		public static func getHeaderPositions<T: CaseIterable & Hashable & CustomStringConvertible>(headers: T, separator: String = "") -> [T:Int] {
+			var myIds = ["ID"]
+			var ret: [T:Int] = [:]
+			T.allCases.forEach { item in
+				var cases = [item.description]
+				if !separator.isEmpty {
+					cases = item.description.split(separator: separator).map {String($0)}
+				}
+				if let index = findHeader(myIds, cases) {
+					ret[item] = index
+				}
+			}
+			return ret
+		}
 	}
 	
 	private static func countColumnEscapes(data: String, escape: String, options: Options) -> Int {
